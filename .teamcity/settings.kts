@@ -33,7 +33,6 @@ project {
     vcsRoot(GitGithubComDsgolovinExampleTeamcityGitRefsHeadsMaster1)
 
     buildType(Build)
-    buildType(Build_2)
     buildType(Build1)
 }
 
@@ -70,38 +69,6 @@ object Build : BuildType({
 
 object Build1 : BuildType({
     name = "Build (1) (1)"
-    paused = true
-
-    vcs {
-        root(DslContext.settingsRoot)
-    }
-
-    steps {
-        maven {
-            id = "Maven2"
-
-            conditions {
-                doesNotContain("teamcity.build.branch", "master")
-            }
-            goals = "clean deploy"
-            runnerArgs = "-Dmaven.test.failure.ignore=true"
-            userSettingsSelection = "settings.xml"
-        }
-    }
-
-    triggers {
-        vcs {
-        }
-    }
-
-    features {
-        perfmon {
-        }
-    }
-})
-
-object Build_2 : BuildType({
-    name = "Build (1)"
     paused = true
 
     vcs {
